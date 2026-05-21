@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#000000,
+#1b062d,
+#5b21b6,
+#ff9ed2,
+#000000
+);
+
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+
+overflow:hidden;
+color:white;
+
+}
+
+@keyframes bg{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+.section{
+
+min-height:100vh;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+padding:20px;
+
+text-align:center;
+
+}
+
+.active{
+display:flex;
+}
+
+.box{
+
+width:90%;
+max-width:850px;
+
+padding:45px;
+
+border-radius:35px;
+
+background:rgba(255,255,255,0.06);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,0.1);
+
+}
+
+h1{
+
+font-size:55px;
+margin-bottom:20px;
+
+}
+
+h2{
+
+font-size:28px;
+font-weight:400;
+margin-bottom:20px;
+
+}
+
+p{
+
+font-size:18px;
+line-height:1.8;
+
+}
+
+button{
+
+padding:15px 28px;
+
+border:none;
+
+border-radius:18px;
+
+background:white;
+
+color:#5b21b6;
+
+font-size:17px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+margin:10px;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+background:#d8b4fe;
+color:white;
+
+}
+
+input{
+
+padding:15px;
+
+width:80%;
+max-width:350px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:17px;
+
+margin-top:20px;
+
+text-align:center;
+
+}
+
+/* BALLOONS */
+
+.balloons{
+
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+
+margin-top:30px;
+
+}
+
+.balloon{
+
+width:100px;
+height:130px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:40px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.balloon:hover{
+transform:translateY(-10px);
+}
+
+.red{
+background:#ff4d6d;
+}
+
+.blue{
+background:#5dade2;
+}
+
+.purple{
+background:#8a2be2;
+}
+
+/* HEART GAME */
+
+.gameArea{
+
+position:relative;
+
+width:100%;
+height:400px;
+
+overflow:hidden;
+
+border-radius:25px;
+
+background:rgba(255,255,255,0.05);
+
+margin-top:20px;
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:45px;
+
+cursor:pointer;
+
+animation:float 7s linear forwards;
+
+}
+
+@keyframes float{
+
+from{
+top:100%;
+}
+
+to{
+top:-10%;
+}
+
+}
+
+/* GIFT BOXES */
+
+.gifts{
+
+display:flex;
+gap:25px;
+justify-content:center;
+margin-top:30px;
+
+}
+
+.gift{
+
+font-size:80px;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.gift:hover{
+
+transform:scale(1.1);
+
+}
+
+/* VIDEO */
+
+video{
+
+width:90%;
+max-width:850px;
+
+border-radius:25px;
+
+margin-top:30px;
+
+box-shadow:
+0 0 40px rgba(255,255,255,0.15);
+
+}
+
+@media(max-width:768px){
+
+h1{
+font-size:38px;
+}
+
+h2{
+font-size:22px;
+}
+
+.balloon{
+width:80px;
+height:110px;
+}
+
+.gift{
+font-size:60px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- 1 SPEED TYPING -->
+
+<section class="section active" id="s1">
+
+<div class="box">
+
+<h1>⌨️ Speed Typing Challenge</h1>
+
+<h2>
+Quick ⚡ Type before time runs out
+</h2>
+
+<p>
+Type:
+<br><br>
+"I am the birthday queen "
+</p>
+
+<input type="text" id="typingInput">
+
+<br>
+
+<button onclick="checkTyping()">
+Submit
+</button>
+
+</div>
+
+</section>
+
+<!-- 2 BALLOON -->
+
+<section class="section" id="s2">
+
+<div class="box">
+
+<h1>🎈 Balloon Pop Game</h1>
+
+<h2>
+One balloon hides the next surprise 🎁
+</h2>
+
+<p id="balloonCount">
+Pop Count: 0 / 5
+</p>
+
+<div class="balloons">
+
+<div class="balloon red" onclick="wrongBalloon()">
+🎈
+</div>
+
+<div class="balloon blue" onclick="correctBalloon()">
+🎈
+</div>
+
+<div class="balloon purple" onclick="wrongBalloon()">
+🎈
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- 3 HEART GAME -->
+
+<section class="section" id="s3">
+
+<div class="box">
+
+<h1>❤️ Heart Catcher</h1>
+
+<h2>
+Catch only 5 hearts in 15 seconds ❤️
+</h2>
+
+<p id="score">
+Score: 0 / 5
+</p>
+
+<div class="gameArea" id="gameArea">
+</div>
+
+<button onclick="startHeartGame()">
+Start Game
+</button>
+
+</div>
+
+</section>
+
+<!-- 4 LUCKY BOX -->
+
+<section class="section" id="s4">
+
+<div class="box">
+
+<h1>🎁 Lucky Box Game</h1>
+
+<h2>
+One gift box contains your surprise
+</h2>
+
+<div class="gifts">
+
+<div class="gift" onclick="wrongGift()">
+🎁
+</div>
+
+<div class="gift" onclick="correctGift()">
+🎁
+</div>
+
+<div class="gift" onclick="wrongGift()">
+🎁
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- 5 SONG -->
+
+<section class="section" id="s5">
+
+<div class="box">
+
+<h1>🎵 Guess The Song</h1>
+
+<h2>
+Guess the song from lyrics
+</h2>
+
+<p>
+"I found a love for me..."
+</p>
+
+<input type="text" id="songAnswer">
+
+<br>
+
+<button onclick="checkSong()">
+Submit
+</button>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section class="section" id="final">
+
+<div class="box">
+
+<h1>🎬 FINAL SURPRISE</h1>
+
+<video controls autoplay>
+
+<source src="/assets/WhatsApp%20Video%202026-05-21%20at%209.23.02%20PM-BuqeU5Gk.mp4" type="video/mp4">
+
+</video>
+
+</div>
+
+</section>
+
+<script>
+
+/* NEXT */
+
+function next(current,nextSectionId){
+
+document.getElementById(current)
+.classList.remove("active");
+
+document.getElementById(nextSectionId)
+.classList.add("active");
+
+}
+
+/* 1 TYPING */
+
+function checkTyping(){
+
+let text=document.getElementById("typingInput").value;
+
+if(text=="I am the birthday queen "){
+
+alert("Typing speed: faster than your mood swings 💀");
+
+next("s1","s2");
+
+}else{
+
+alert("Too slow 😭 The cake almost expired.");
+
+}
+
+}
+
+/* 2 BALLOON */
+
+let balloonClicks=0;
+
+function wrongBalloon(){
+
+let msgs=[
+
+"Wrong balloon 😭",
+"Better luck, birthday girl.",
+"That balloon only contained air 💀",
+"Oops… try another one."
+
+];
+
+alert(msgs[Math.floor(Math.random()*msgs.length)]);
+
+}
+
+function correctBalloon(){
+
+balloonClicks++;
+
+document.getElementById("balloonCount")
+.innerHTML="Pop Count: "+balloonClicks+" / 5";
+
+if(balloonClicks<5){
+
+alert("Pop "+balloonClicks+"/5 🎈");
+
+}else{
+
+alert("NEXT LEVEL UNLOCKED 🔓✨");
+
+next("s2","s3");
+
+}
+
+}
+
+/* 3 HEART GAME */
+
+let score=0;
+
+function startHeartGame(){
+
+score=0;
+
+document.getElementById("score")
+.innerHTML="Score: 0 / 5";
+
+let game=document.getElementById("gameArea");
+
+game.innerHTML="";
+
+let interval=setInterval(createHeart,1000);
+
+setTimeout(()=>{
+
+clearInterval(interval);
+
+if(score>=1){
+
+alert("Maximum affection detected ✨");
+
+next("s3","s4");
+
+}else{
+
+alert("You missed too many hearts 😭");
+
+}
+
+},15000);
+
+}
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*85+"%";
+
+document.getElementById("gameArea")
+.appendChild(heart);
+
+heart.onclick=function(){
+
+score++;
+
+document.getElementById("score")
+.innerHTML="Score: "+score+" / 5";
+
+heart.remove();
+
+};
+
+setTimeout(()=>{
+
+heart.remove();
+
+},7000);
+
+}
+
+/* 4 GIFT */
+
+function wrongGift(){
+
+let msgs=[
+
+"Empty 😭",
+"Only disappointment inside.",
+"No gift for you yet."
+
+];
+
+alert(msgs[Math.floor(Math.random()*msgs.length)]);
+
+}
+
+function correctGift(){
+
+alert("SURPRISE UNLOCKED 🎥✨");
+
+next("s4","s5");
+
+}
+
+/* 5 SONG */
+
+function checkSong(){
+
+let ans=document.getElementById("songAnswer")
+.value.toLowerCase();
+
+if(ans=="perfect"){
+
+alert("Music taste approved 🎶✨");
+
+next("s5","final");
+
+}else{
+
+alert("Even Spotify is disappointed 😭");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
